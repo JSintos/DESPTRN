@@ -1,7 +1,7 @@
 package jandjsandwiches.com.ph.model;
 
 public class BaconEggCheese implements Sandwich {
-	private String name, description, price, ingredients, calorieCount;
+	private String name, description, price, ingredients, calorieCount, imageName;
 	
 	public BaconEggCheese() {
 		name = "Bacon, egg, and cheese";
@@ -9,6 +9,7 @@ public class BaconEggCheese implements Sandwich {
 		price = "Php 250";
 		ingredients = "Bacon, eggs, cheese, and buttered/ toasted bread.";
 		calorieCount = "100";
+		imageName = "baconeggcheese.jpg";
 	}
 
 	public String getName() {
@@ -49,6 +50,14 @@ public class BaconEggCheese implements Sandwich {
 
 	public void setCalorieCount(String calorieCount) {
 		this.calorieCount = calorieCount;
+	}
+	
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
 	}
 	
 	@Override

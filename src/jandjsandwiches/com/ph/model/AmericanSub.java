@@ -1,7 +1,7 @@
 package jandjsandwiches.com.ph.model;
 
 public class AmericanSub implements Sandwich {
-	private String name, description, price, ingredients, calorieCount;
+	private String name, description, price, ingredients, calorieCount, imageName;
 	
 	public AmericanSub() {
 		name = "American sub";
@@ -9,6 +9,7 @@ public class AmericanSub implements Sandwich {
 		price = "Php 250";
 		ingredients = "Meat, cheese, assorted vegetables, and condiments.";
 		calorieCount = "100";
+		imageName = "americansub.jpg";
 	}
 
 	public String getName() {
@@ -49,6 +50,14 @@ public class AmericanSub implements Sandwich {
 
 	public void setCalorieCount(String calorieCount) {
 		this.calorieCount = calorieCount;
+	}
+
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
 	}
 	
 	@Override

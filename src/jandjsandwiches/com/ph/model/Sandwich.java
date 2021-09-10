@@ -6,5 +6,6 @@ public interface Sandwich {
 	String getPrice();
 	String getIngredients();
 	String getCalorieCount();
+	String getImageName();
 	void printDetails();
 }

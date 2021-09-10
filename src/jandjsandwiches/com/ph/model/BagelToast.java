@@ -1,14 +1,15 @@
 package jandjsandwiches.com.ph.model;
 
 public class BagelToast implements Sandwich {
-private String name, description, price, ingredients, calorieCount;
+private String name, description, price, ingredients, calorieCount, imageName;
 	
 	public BagelToast() {
-		name = "Bagel Toast";
+		name = "Bagel toast";
 		description = "Pressed, toasted bagel filled with vegetables and cheese and grilled on a sandwich toaster or panini press.";
 		price = "Php 250";
 		ingredients = "Toasted bagel, vegetables, and cheese.";
 		calorieCount = "100";
+		imageName = "bageltoast.jpg";
 	}
 
 	public String getName() {
@@ -51,6 +52,14 @@ private String name, description, price, ingredients, calorieCount;
 		this.calorieCount = calorieCount;
 	}
 	
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
+
 	@Override
 	public void printDetails() {
 		System.out.println("Here! - " + name);
