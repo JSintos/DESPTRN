@@ -5,5 +5,5 @@ This Github repository is a collection of machine problems in our class, DESPTRN
 Initially, we were tasked to brainstorm an e-commerce platform wherein we would use the software design patterns that we've learned to gradually create a full-fledged system. Thus, enter Josh and Josh's Sandwiches.
 
 <p align="center">
-    <img alt="Josh and Josh's Sandwiches logo" height="75" width="75" src="https://github.com/JSintos/DESPTRN/blob/master/logo.png?raw=true">
+    <img alt="Josh and Josh's Sandwiches logo" height="150" width="150" src="https://github.com/JSintos/DESPTRN/blob/master/logo.png?raw=true">
 </p>
