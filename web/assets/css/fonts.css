@@ -1,0 +1,35 @@
+@font-face {
+    font-family: 'Cysan';
+    src: url('../fonts/Cysan/Cysan-Regular.eot');
+    src: url('../fonts/Cysan/Cysan-Regular.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Cysan/Cysan-Regular.ttf') format('truetype'),
+         url('../fonts/Cysan/Cysan-Regular.woff') format('woff'),
+         url('../fonts/Cysan/Cysan-Regular.woff2') format('woff2');
+    font-style: normal;
+    font-weight: normal;
+    font-display: fallback;   
+}
+
+@font-face {
+    font-family: 'Latina Essential';
+    src: url('../fonts/Latina Essential/LatinaEssential-Light.eot');
+    src: url('../fonts/Latina Essential/LatinaEssential-Light.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Latina Essential/LatinaEssential-Light.ttf') format('truetype'),
+         url('../fonts/Latina Essential/LatinaEssential-Light.woff') format('woff'),
+         url('../fonts/Latina Essential/LatinaEssential-Light.woff2') format('woff2');
+    font-style: normal;
+    font-weight: lighter;
+    font-display: fallback;   
+}
+
+@font-face {
+    font-family: 'Latina Essential-Bold';
+    src: url('../fonts/Latina Essential/LatinaEssential-Bold.eot');
+    src: url('../fonts/Latina Essential/LatinaEssential-Bold.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Latina Essential/LatinaEssential-Bold.ttf') format('truetype'),
+         url('../fonts/Latina Essential/LatinaEssential-Bold.woff') format('woff'),
+         url('../fonts/Latina Essential/LatinaEssential-Bold.woff2') format('woff2');
+    font-style: normal;
+    font-weight: bold;
+    font-display: fallback;   
+}
