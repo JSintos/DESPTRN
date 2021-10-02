@@ -16,11 +16,11 @@ The children classes that implements the Sandwich interface and inherits the app
 
 ## Model.Drink
 
-The interface class that serves as the blueprint for the classes Coke, Royal, MountainDew, and BottledWater
+The interface class that serves as the blueprint for the classes Coke, Royal, MountainDew, and BottledWater.
 
 ## Model.Coke, Model.Royal, Model.MountainDew, Model.BottledWater
 
-The children classes that implements the Drink interface and inherits the approrpriate methods such as `getName()`, `getPrice()`, `getImageName()`, and overrides `printDetails()`
+The children classes that implements the Drink interface and inherits the approrpriate methods such as `getName()`, `getPrice()`, `getImageName()`, and overrides `printDetails()`.
 
 ## Utility
 
@@ -33,7 +33,7 @@ Displays the information of the selected meal to the user.
 ## UML Diagram
 
 <p align="center">
-    <img alt="DESPTRN - Machine Problem 1.2 UML" src="https://github.com/JSintos/DESPTRN/blob/machineproblem2/DESPTRN%20-%20Machine%20Problem%202%20UML.png?raw=true">
+    <img alt="DESPTRN - Machine Problem 2 UML" src="https://github.com/JSintos/DESPTRN/blob/machineproblem2/DESPTRN%20-%20Machine%20Problem%202%20UML.png?raw=true">
 </p>
 
 ## Collaborators
