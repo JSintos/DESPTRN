@@ -85,11 +85,6 @@
 									}
 								
 								%>
-								
-								<!-- <option value="Coke">Coke</option>
-								<option value="Royal">Royal</option>
-								<option value="MountainDew">Mountain Dew</option>
-								<option value="BottledWater">Bottled Water</option>	-->
 							</select>
 						</div>
 					</div>
