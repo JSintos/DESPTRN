@@ -1,0 +1,13 @@
+body {
+    color: #17202A;
+    background-color: #008044;
+    font-family: 'Latina Essential';
+}
+
+body > .container {
+    padding-top: 125px;
+}
+
+.bg-green {
+    background-color: #008064;
+}
