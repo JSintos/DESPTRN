@@ -1,4 +1,4 @@
-# Machine Problem 3 - Prototype Design Pattern
+# Machine Problem 4 - Prototype Design Pattern
 
 This project follows the prototype design pattern, singleton design pattern, the abstract factory design pattern as well as the MVC model 2 architecture. We employ the use of servlets and JSP pages as the 'controller' and the 'view' respectively.
 
@@ -48,7 +48,7 @@ The children classes that implements the Drink interface and inherits the appror
 ## UML Diagram
 
 <p align="center">
-    <img alt="DESPTRN - Machine Problem 4 UML" src="https://github.com/JSintos/DESPTRN/blob/machineproblem3/DESPTRN%20-%20Machine%20Problem%204%20UML.png?raw=true">
+    <img alt="DESPTRN - Machine Problem 4 UML" src="https://github.com/JSintos/DESPTRN/blob/machineproblem4/DESPTRN%20-%20Machine%20Problem%204%20UML.png?raw=true">
 </p>
 
 ## Collaborators
