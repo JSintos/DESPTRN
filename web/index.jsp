@@ -34,11 +34,11 @@
                                 <a class="nav-link" href="/">Home</a>
                             </li>
     
-                            <li class="nav-item active">
-                                <a class="nav-link"  href="products.jsp">Products</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/products">Products</a>
                             </li>
     
-                            <li class="nav-item active">
+                            <li class="nav-item">
                                 <a class="nav-link" href="/choosemeal">Order</a>
                             </li>
                         </ul>
@@ -61,10 +61,6 @@
                         </div>
                     </div>
                 </div>
-        
-                <!-- <form action='choosemeal' class="form-group mt-3" method="post">
-                    <button class="btn btn-warning" type="submit">Order Meal</button>
-                </form> -->
         
                 <div class="fixed-bottom text-center mb-3">
                     <small>&copy; 2021 Joshua Lagerejos & Joshua Sintos</small>

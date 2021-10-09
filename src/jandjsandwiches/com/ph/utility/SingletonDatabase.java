@@ -19,7 +19,6 @@ public class SingletonDatabase {
 	private static String dbUsername;
 	private static String dbPassword;
 	
-	//Fix Singleton getConnection/getInstance
 	private static Connection getInstance() {
 		Connection connection = null;
 		
@@ -73,7 +72,7 @@ public class SingletonDatabase {
 	
 	public static void populateTables() {
 		try {
-			connection = getInstance();
+			connection = getConnection();
 
 			Statement statement;
 			ResultSet resultSet;
@@ -124,7 +123,7 @@ public class SingletonDatabase {
 		ArrayList<String> sandwiches = new ArrayList<String>();
 		
 		try {
-			connection = getInstance();
+			connection = getConnection();
 			
 			String query = "SELECT name FROM sandwiches";
 			
@@ -144,7 +143,7 @@ public class SingletonDatabase {
 		ArrayList<String> drinks = new ArrayList<String>();
 		
 		try {
-			connection = getInstance();
+			connection = getConnection();
 			
 			String query = "SELECT name FROM drinks";
 			
@@ -164,7 +163,7 @@ public class SingletonDatabase {
 		String query = "INSERT INTO meals(sandwichName, sandwichDescription, sandwichPrice, sandwichIngredients, sandwichCalorieCount, sandwichImageName, drinkName, drinkPrice, drinkImageName) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
-			connection = getInstance();
+			connection = getConnection();
 			
 			if(connection != null) {
 				PreparedStatement preparedStatement = connection.prepareStatement(query);

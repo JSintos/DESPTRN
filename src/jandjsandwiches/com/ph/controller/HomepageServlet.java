@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import jandjsandwiches.com.ph.model.drink.Drink;
+import jandjsandwiches.com.ph.model.sandwich.Sandwich;
+import jandjsandwiches.com.ph.utility.Prototype;
 import jandjsandwiches.com.ph.utility.SingletonDatabase;
 
 public class HomepageServlet extends HttpServlet {
@@ -19,17 +22,35 @@ public class HomepageServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SingletonDatabase.createTables(getServletContext().getInitParameter("jdbcDriver"), 
-								       getServletConfig().getInitParameter("jdbcUrl"), 
-								       getServletConfig().getInitParameter("dbUsername"), 
-								       getServletConfig().getInitParameter("dbPassword"));
-		
+			       getServletConfig().getInitParameter("jdbcUrl"), 
+			       getServletConfig().getInitParameter("dbUsername"), 
+			       getServletConfig().getInitParameter("dbPassword"));
+
 		SingletonDatabase.populateTables();
 		
 		ArrayList<String> sandwiches = SingletonDatabase.retrieveSandwiches();
 		ArrayList<String> drinks = SingletonDatabase.retrieveDrinks();
 		
-		request.setAttribute("sandwiches", sandwiches);
-		request.setAttribute("drinks", drinks);
-		request.getRequestDispatcher("chooseMeal.jsp").forward(request, response);
+		if(request.getServletPath().equals("/products")) {
+			ArrayList<Sandwich> sandwichPrototypes = new ArrayList<Sandwich>();
+			ArrayList<Drink> drinkPrototypes = new ArrayList<Drink>();
+			
+			for(String sandwich : sandwiches) {
+				sandwichPrototypes.add(Prototype.getSandwichPrototype(sandwich));
+			}
+			
+			for(String drink : drinks) {
+				drinkPrototypes.add(Prototype.getDrinkPrototype(drink));
+			}
+			
+			request.setAttribute("sandwichPrototypes", sandwichPrototypes);
+			request.setAttribute("drinkPrototypes", drinkPrototypes);
+			request.getRequestDispatcher("products.jsp").forward(request, response);
+		}
+		else if(request.getServletPath().equals("/choosemeal")) {
+			request.setAttribute("sandwiches", sandwiches);
+			request.setAttribute("drinks", drinks);
+			request.getRequestDispatcher("chooseMeal.jsp").forward(request, response);
+		}
 	}
 }
