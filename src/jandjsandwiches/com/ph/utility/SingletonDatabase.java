@@ -19,6 +19,7 @@ public class SingletonDatabase {
 	private static String dbUsername;
 	private static String dbPassword;
 	
+	//Fix Singleton getConnection/getInstance
 	private static Connection getInstance() {
 		Connection connection = null;
 		
