@@ -1,8 +1,5 @@
 package jandjsandwiches.com.ph.model.sandwich;
 
-import jandjsandwiches.com.ph.model.drink.Drink;
-import jandjsandwiches.com.ph.model.drink.Royal;
-
 public class BakedBean implements Sandwich {
 	private String name, description, price, ingredients, calorieCount, imageName;
 	
