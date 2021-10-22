@@ -94,7 +94,25 @@
 							</select>
 						</div>
 					</div>
-					
+
+					<div class="col-2">
+						<div class="form-group">
+							<input class="form-control" min="1" name="sandwichQuantity" placeholder="Quantity" type="number">
+						</div>
+					</div>
+
+					<div class="col-3">
+						<div class="form-group">
+							<input class="form-control" name="creditCardNumber" placeholder="Credit card number" type="text">
+						</div>
+					</div>
+
+					<div class="col-2">
+						<button class="btn btn-warning" type="submit">Order Meal</button>
+					</div>
+				</div>
+
+				<div class="row">
 					<div class="col-3">
 						<div class="form-group">
 							<select class="form-control" name="drinkType">
@@ -117,7 +135,9 @@
 					</div>
 
 					<div class="col-2">
-						<button class="btn btn-warning" type="submit">Order Meal</button>
+						<div class="form-group">
+							<input class="form-control" min="1" name="drinkQuantity" placeholder="Quantity" type="number">
+						</div>
 					</div>
 				</div>
 			</form>
@@ -127,4 +147,22 @@
 			</div>
 		</div>
 	</body>
+	
+	<%
+	
+		if(request.getAttribute("triggerAlert") != null){
+			if(request.getAttribute("triggerAlert").equals("Insufficient inventory amount")){
+			
+	%>
+		<script>alert("Insufficient inventory amount. Please try again.");</script>
+	<%
+			}
+			else if(request.getAttribute("triggerAlert").equals("Invalid credit card number")) {
+	%>
+		<script>alert("Invalid credit card number. Please try again.");</script>
+	<%
+			}
+		}
+	
+	%>
 </html>

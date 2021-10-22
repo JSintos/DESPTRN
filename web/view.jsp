@@ -62,6 +62,8 @@
 				</div>
 			</div>
 
+			<h3 class="my-4">You have ordered ${sandwichQuantity} set/s of ${newSandwich.name}, and ${drinkQuantity} set/s of ${newDrink.name}:</h3>
+
 			<div class="row">
 				<div class="col-2"></div>
 				<div class="col">

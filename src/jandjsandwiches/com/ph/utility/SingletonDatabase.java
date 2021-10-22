@@ -50,17 +50,17 @@ public class SingletonDatabase {
 
 			Statement statement;
 			if(connection != null) {
-				String sandwichesTableQuery = "CREATE TABLE IF NOT EXISTS sandwiches(sandwichId int NOT NULL AUTO_INCREMENT, name varchar(50), description varchar(300), price double, ingredients varchar(300), calorieCount int, imageName varchar(50), PRIMARY KEY (sandwichId))";
+				String sandwichesTableQuery = "CREATE TABLE IF NOT EXISTS sandwiches(sandwichId int NOT NULL AUTO_INCREMENT, name varchar(50), description varchar(300), price double, ingredients varchar(300), calorieCount int, imageName varchar(50), inventoryAmount int, PRIMARY KEY (sandwichId))";
 				
 				statement = connection.createStatement();
 				statement.executeUpdate(sandwichesTableQuery);
 				
-				String drinksTableQuery = "CREATE TABLE IF NOT EXISTS drinks(drinkId int NOT NULL AUTO_INCREMENT, name varchar(25), price double, imageName varchar(50), PRIMARY KEY (drinkId))";
+				String drinksTableQuery = "CREATE TABLE IF NOT EXISTS drinks(drinkId int NOT NULL AUTO_INCREMENT, name varchar(25), price double, imageName varchar(50), inventoryAmount int, PRIMARY KEY (drinkId))";
 				
 				statement = connection.createStatement();
 				statement.executeUpdate(drinksTableQuery);
 				
-				String mealsTableQuery = "CREATE TABLE IF NOT EXISTS meals(mealId int NOT NULL AUTO_INCREMENT, sandwichName varchar(50), sandwichDescription varchar(300), sandwichPrice double, sandwichIngredients varchar(300), sandwichCalorieCount int, sandwichImageName varchar(50), drinkName varchar(25), drinkPrice double, drinkImageName varchar(50), PRIMARY KEY (mealId))";
+				String mealsTableQuery = "CREATE TABLE IF NOT EXISTS meals(mealId int NOT NULL AUTO_INCREMENT, sandwichName varchar(50), sandwichDescription varchar(300), sandwichPrice double, sandwichIngredients varchar(300), sandwichCalorieCount int, sandwichImageName varchar(50), sandwichQuantity int, drinkName varchar(25), drinkPrice double, drinkImageName varchar(50), drinkQuantity int, PRIMARY KEY (mealId))";
 				
 				statement = connection.createStatement();
 				statement.executeUpdate(mealsTableQuery);
@@ -79,11 +79,11 @@ public class SingletonDatabase {
 			if(connection != null) {
 				String[] sandwiches = {"American sub", "Bacon", "Bacon, egg, and cheese", "Bagel toast", "Baked bean"};
 				String[] sandwichesTableQueries = {
-						"INSERT INTO sandwiches(name, description, price, ingredients, calorieCount, imageName) VALUES('American sub', 'Traditionally uses sliced turkey breast, ham, roast beef, American or cheddar cheese, chopped or shredded lettuce, tomatoes and green peppers on a roll of bread.', 250, 'Meat, cheese, assorted vegetables, and condiments.', 100, 'americansub.jpg')",
-						"INSERT INTO sandwiches(name, description, price, ingredients, calorieCount, imageName) VALUES('Bacon', 'Often eaten with ketchup or brown sauce.', 250, 'Bacon, buttered/ toasted bread, and ketchup or brown sauce.', 100, 'bacon.jpg')",
-						"INSERT INTO sandwiches(name, description, price, ingredients, calorieCount, imageName) VALUES('Bacon, egg, and cheese', 'Breakfast sandwich, usually with fried or scrambled egg.', 250, 'Bacon, eggs, cheese, and buttered/ toasted bread.', 100, 'baconeggcheese.jpg')",
-						"INSERT INTO sandwiches(name, description, price, ingredients, calorieCount, imageName) VALUES('Bagel toast', 'Pressed, toasted bagel filled with vegetables and cheese and grilled on a sandwich toaster or panini press.', 250, 'Toasted bagel, vegetables, and cheese.', 100, 'bageltoast.jpg')",
-						"INSERT INTO sandwiches(name, description, price, ingredients, calorieCount, imageName) VALUES('Baked bean', 'Canned baked beans on white or brown bread, sometimes with butter.', 250, 'Baked beans, garnishes such as lettuces and toppings such as mayonnaise or ketchup.', 100, 'bakedbean.jpg')",
+						"INSERT INTO sandwiches(name, description, price, ingredients, calorieCount, imageName, inventoryAmount) VALUES('American sub', 'Traditionally uses sliced turkey breast, ham, roast beef, American or cheddar cheese, chopped or shredded lettuce, tomatoes and green peppers on a roll of bread.', 250, 'Meat, cheese, assorted vegetables, and condiments.', 100, 'americansub.jpg', 100)",
+						"INSERT INTO sandwiches(name, description, price, ingredients, calorieCount, imageName, inventoryAmount) VALUES('Bacon', 'Often eaten with ketchup or brown sauce.', 250, 'Bacon, buttered/ toasted bread, and ketchup or brown sauce.', 100, 'bacon.jpg', 100)",
+						"INSERT INTO sandwiches(name, description, price, ingredients, calorieCount, imageName, inventoryAmount) VALUES('Bacon, egg, and cheese', 'Breakfast sandwich, usually with fried or scrambled egg.', 250, 'Bacon, eggs, cheese, and buttered/ toasted bread.', 100, 'baconeggcheese.jpg', 100)",
+						"INSERT INTO sandwiches(name, description, price, ingredients, calorieCount, imageName, inventoryAmount) VALUES('Bagel toast', 'Pressed, toasted bagel filled with vegetables and cheese and grilled on a sandwich toaster or panini press.', 250, 'Toasted bagel, vegetables, and cheese.', 100, 'bageltoast.jpg', 100)",
+						"INSERT INTO sandwiches(name, description, price, ingredients, calorieCount, imageName, inventoryAmount) VALUES('Baked bean', 'Canned baked beans on white or brown bread, sometimes with butter.', 250, 'Baked beans, garnishes such as lettuces and toppings such as mayonnaise or ketchup.', 100, 'bakedbean.jpg', 100)",
 						};
 				
 				for(int counter = 0; counter < sandwiches.length; counter++) {
@@ -98,10 +98,10 @@ public class SingletonDatabase {
 				
 				String[] drinks = {"Bottled Water", "Coke", "Mountain Dew", "Royal"};
 				String[] drinksTableQueries = {
-						"INSERT INTO drinks(name, price, imageName) VALUES('Bottled Water', 15, 'bottledwater.png')",
-						"INSERT INTO drinks(name, price, imageName) VALUES('Coke', 50, 'coke.png')",
-						"INSERT INTO drinks(name, price, imageName) VALUES('Mountain Dew', 50, 'mountaindew.png')",
-						"INSERT INTO drinks(name, price, imageName) VALUES('Royal', 50, 'royal.png')"
+						"INSERT INTO drinks(name, price, imageName, inventoryAmount) VALUES('Bottled Water', 15, 'bottledwater.png', 100)",
+						"INSERT INTO drinks(name, price, imageName, inventoryAmount) VALUES('Coke', 50, 'coke.png', 100)",
+						"INSERT INTO drinks(name, price, imageName, inventoryAmount) VALUES('Mountain Dew', 50, 'mountaindew.png', 100)",
+						"INSERT INTO drinks(name, price, imageName, inventoryAmount) VALUES('Royal', 50, 'royal.png', 100)"
 						};
 				
 				for(int counter = 0; counter < drinks.length; counter++) {
@@ -127,10 +127,12 @@ public class SingletonDatabase {
 			
 			String query = "SELECT name FROM sandwiches";
 			
-			Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery(query);
-			while(resultSet.next()) {
-				sandwiches.add(resultSet.getString("name"));
+			if(connection != null) {
+				Statement statement = connection.createStatement();
+				ResultSet resultSet = statement.executeQuery(query);
+				while(resultSet.next()) {
+					sandwiches.add(resultSet.getString("name"));
+				}
 			}
 		} catch(SQLException sqle) {
 			System.err.println(sqle.getMessage());
@@ -145,12 +147,14 @@ public class SingletonDatabase {
 		try {
 			connection = getConnection();
 			
-			String query = "SELECT name FROM drinks";
-			
-			Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery(query);
-			while(resultSet.next()) {
-				drinks.add(resultSet.getString("name"));
+			if(connection != null) {
+				String query = "SELECT name FROM drinks";
+				
+				Statement statement = connection.createStatement();
+				ResultSet resultSet = statement.executeQuery(query);
+				while(resultSet.next()) {
+					drinks.add(resultSet.getString("name"));
+				}
 			}
 		} catch(SQLException sqle) {
 			System.err.println(sqle.getMessage());
@@ -159,8 +163,8 @@ public class SingletonDatabase {
 		return drinks;
 	}
 	
-	public static void insertMeal(Sandwich newSandwich, Drink newDrink) {
-		String query = "INSERT INTO meals(sandwichName, sandwichDescription, sandwichPrice, sandwichIngredients, sandwichCalorieCount, sandwichImageName, drinkName, drinkPrice, drinkImageName) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	public static void insertMeal(Sandwich newSandwich, Drink newDrink, int sandwichQuantity, int drinkQuantity) {
+		String query = "INSERT INTO meals(sandwichName, sandwichDescription, sandwichPrice, sandwichIngredients, sandwichCalorieCount, sandwichImageName, sandwichQuantity, drinkName, drinkPrice, drinkImageName, drinkQuantity) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
 			connection = getConnection();
@@ -174,9 +178,11 @@ public class SingletonDatabase {
 				preparedStatement.setString(4, newSandwich.getIngredients());
 				preparedStatement.setString(5, newSandwich.getCalorieCount());
 				preparedStatement.setString(6, newSandwich.getImageName());
-				preparedStatement.setString(7, newDrink.getName());
-				preparedStatement.setString(8, newDrink.getPrice());
-				preparedStatement.setString(9, newDrink.getImageName());
+				preparedStatement.setInt(7, sandwichQuantity);
+				preparedStatement.setString(8, newDrink.getName());
+				preparedStatement.setString(9, newDrink.getPrice());
+				preparedStatement.setString(10, newDrink.getImageName());
+				preparedStatement.setInt(11, drinkQuantity);
 				
 				preparedStatement.executeUpdate();
 			}
