@@ -64,7 +64,7 @@
         <div class="container">
             <%
             
-                if(!sandwichPrototypes.isEmpty()){
+                if(!sandwichPrototypes.isEmpty()){  	
             %>
                     <h1>Sandwiches</h1>
             <%
