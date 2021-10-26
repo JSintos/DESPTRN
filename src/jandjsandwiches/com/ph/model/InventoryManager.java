@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import jandjsandwiches.com.ph.utility.SingletonDatabase;
 
 public class InventoryManager {
+	// Returns the specified product's inventory amount
 	public static int getInventoryAmount(String product, String type) {
 		try {
 			if(SingletonDatabase.getConnection() != null) {
@@ -35,6 +36,7 @@ public class InventoryManager {
 		return -1;
 	}
 	
+	// Deducts the specified product's inventory amount by the quantity ordered by the user
 	public static void deductInventory(String product, String type, int quantity) {
 		int currentInventoryAmount = getInventoryAmount(product, type);
 		

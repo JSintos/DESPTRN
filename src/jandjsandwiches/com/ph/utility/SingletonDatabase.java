@@ -35,10 +35,12 @@ public class SingletonDatabase {
 		return connection;
 	}
 	
+	// Singleton implementation of the connection instance
 	public static Connection getConnection() {
 		return (connection != null) ? connection : getInstance();
 	}
 
+	// Creates the required tables needed for the functions to work
 	public static void createTables(String driver, String url, String username, String password){
 		jdbcDriver = driver;
 		jdbcUrl = url;
@@ -70,6 +72,7 @@ public class SingletonDatabase {
 		}
 	}
 	
+	// Populates the newly created tables with the catalog of products
 	public static void populateTables() {
 		try {
 			connection = getConnection();
@@ -119,6 +122,7 @@ public class SingletonDatabase {
 		}
 	}
 	
+	// Retrieves the list of sandwich products
 	public static ArrayList<String> retrieveSandwiches() {
 		ArrayList<String> sandwiches = new ArrayList<String>();
 		
@@ -141,6 +145,7 @@ public class SingletonDatabase {
 		return sandwiches;
 	}
 	
+	// Retrieves the list of drink products
 	public static ArrayList<String> retrieveDrinks() {
 		ArrayList<String> drinks = new ArrayList<String>();
 		
@@ -163,6 +168,7 @@ public class SingletonDatabase {
 		return drinks;
 	}
 	
+	// Inserts a meal into the database after processing a valid order
 	public static void insertMeal(Sandwich newSandwich, Drink newDrink, int sandwichQuantity, int drinkQuantity) {
 		String query = "INSERT INTO meals(sandwichName, sandwichDescription, sandwichPrice, sandwichIngredients, sandwichCalorieCount, sandwichImageName, sandwichQuantity, drinkName, drinkPrice, drinkImageName, drinkQuantity) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		

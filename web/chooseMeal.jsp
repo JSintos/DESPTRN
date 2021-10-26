@@ -154,12 +154,12 @@
 			if(request.getAttribute("triggerAlert").equals("Insufficient inventory amount")){
 			
 	%>
-		<script>alert("Insufficient inventory amount. Please try again.");</script>
+			<script>alert("Insufficient inventory amount. Please try again.");</script>
 	<%
 			}
 			else if(request.getAttribute("triggerAlert").equals("Invalid credit card number")) {
 	%>
-		<script>alert("Invalid credit card number. Please try again.");</script>
+			<script>alert("Invalid credit card number. Please try again.");</script>
 	<%
 			}
 		}

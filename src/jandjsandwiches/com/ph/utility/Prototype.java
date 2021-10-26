@@ -23,6 +23,7 @@ public class Prototype {
 		drinkPrototypes.put("Royal", new Royal());
 	}
 	
+	// Returns the corresponding sandwich prototype given a name
 	public static Sandwich getSandwichPrototype(String sandwichType) {
 		try {
 			return sandwichPrototypes.get(sandwichType).clone();
@@ -33,6 +34,7 @@ public class Prototype {
 		}
 	}
 	
+	// Returns the corresponding drink prototype given a name
 	public static Drink getDrinkPrototype(String drinkType) {
 		try {
 			return drinkPrototypes.get(drinkType).clone();

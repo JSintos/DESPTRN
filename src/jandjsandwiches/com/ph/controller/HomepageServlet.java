@@ -21,6 +21,7 @@ public class HomepageServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Creates the required tables needed for the functions to work
 		SingletonDatabase.createTables(getServletContext().getInitParameter("jdbcDriver"), 
 			       getServletConfig().getInitParameter("jdbcUrl"), 
 			       getServletConfig().getInitParameter("dbUsername"), 
@@ -35,21 +36,25 @@ public class HomepageServlet extends HttpServlet {
 			ArrayList<Sandwich> sandwichPrototypes = new ArrayList<Sandwich>();
 			ArrayList<Drink> drinkPrototypes = new ArrayList<Drink>();
 			
+			// Populates the array list with the sandwich prototypes
 			for(String sandwich : sandwiches) {
 				sandwichPrototypes.add(Prototype.getSandwichPrototype(sandwich));
 			}
 			
+			// Populates the array list with the drink prototypes
 			for(String drink : drinks) {
 				drinkPrototypes.add(Prototype.getDrinkPrototype(drink));
 			}
 			
 			request.setAttribute("sandwichPrototypes", sandwichPrototypes);
 			request.setAttribute("drinkPrototypes", drinkPrototypes);
+			
 			request.getRequestDispatcher("products.jsp").forward(request, response);
 		}
 		else if(request.getServletPath().equals("/choosemeal")) {
 			request.setAttribute("sandwiches", sandwiches);
 			request.setAttribute("drinks", drinks);
+			
 			request.getRequestDispatcher("chooseMeal.jsp").forward(request, response);
 		}
 	}

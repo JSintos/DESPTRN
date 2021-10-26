@@ -6,10 +6,10 @@ import jandjsandwiches.com.ph.utility.Facade;
 import jandjsandwiches.com.ph.utility.SingletonDatabase;
 
 public class Register implements Facade {
-	String creditCardNumber;
 	Sandwich newSandwich;
 	Drink newDrink;
 	int sandwichQuantity, drinkQuantity;
+	String creditCardNumber;
 	
 	public Register(Sandwich newSandwich, Drink newDrink, int sandwichQuantity, int drinkQuantity, String creditCardNumber) {
 		this.newSandwich = newSandwich;
@@ -83,8 +83,10 @@ public class Register implements Facade {
 	
 	@Override
 	public String processOrder() {
+		// Checks whether the chosen product's inventory amount is greater than or equal to the corresponding quantity
 		if(InventoryManager.getInventoryAmount("sandwich", newSandwich.getName()) >= sandwichQuantity &&
 		   InventoryManager.getInventoryAmount("drink", newDrink.getName()) >= drinkQuantity) {
+			// Checks whether the inputted credit card number is valid
 			if(validateCreditCard(creditCardNumber) && !creditCardNumber.equals("")) {
 				SingletonDatabase.insertMeal(newSandwich, newDrink, sandwichQuantity, drinkQuantity);
 				

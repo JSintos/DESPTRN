@@ -23,6 +23,7 @@ public class SearchResultServlet extends HttpServlet {
 		doPost(request, response);
 	}
 
+	// Handles the search results given an inputted keyword
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String keyword = request.getParameter("keyword");
 		
@@ -57,6 +58,7 @@ public class SearchResultServlet extends HttpServlet {
 		
 		request.setAttribute("sandwichPrototypes", sandwichPrototypes);
 		request.setAttribute("drinkPrototypes", drinkPrototypes);
+		
 		request.getRequestDispatcher("searchResults.jsp").forward(request, response);
 	}
 }
