@@ -62,6 +62,11 @@ public class SingletonDatabase {
 				statement = connection.createStatement();
 				statement.executeUpdate(drinksTableQuery);
 				
+				String extrasTableQuery = "CREATE TABLE IF NOT EXISTS extras(extraId int NOT NULL AUTO_INCREMENT, name varchar(25), price double, imageName varchar(50), inventoryAmount int, PRIMARY KEY (extraId))";
+				
+				statement = connection.createStatement();
+				statement.executeUpdate(extrasTableQuery);
+				
 				String mealsTableQuery = "CREATE TABLE IF NOT EXISTS meals(mealId int NOT NULL AUTO_INCREMENT, sandwichName varchar(50), sandwichDescription varchar(300), sandwichPrice double, sandwichIngredients varchar(300), sandwichCalorieCount int, sandwichImageName varchar(50), sandwichQuantity int, drinkName varchar(25), drinkPrice double, drinkImageName varchar(50), drinkQuantity int, PRIMARY KEY (mealId))";
 				
 				statement = connection.createStatement();
@@ -89,11 +94,14 @@ public class SingletonDatabase {
 						"INSERT INTO sandwiches(name, description, price, ingredients, calorieCount, imageName, inventoryAmount) VALUES('Baked bean', 'Canned baked beans on white or brown bread, sometimes with butter.', 250, 'Baked beans, garnishes such as lettuces and toppings such as mayonnaise or ketchup.', 100, 'bakedbean.jpg', 100)",
 						};
 				
+				// Iterates through each sandwich type
 				for(int counter = 0; counter < sandwiches.length; counter++) {
+					// Retrieves the sandwich row using the current element
 					String sandwichSelectQuery = "SELECT * FROM sandwiches WHERE name = '" + sandwiches[counter] + "'";
 					
 					statement = connection.createStatement();
 					resultSet = statement.executeQuery(sandwichSelectQuery);
+					// And counter checks it if doesn't exist in the table yet 
 					if(resultSet.next() == false) {
 						statement.executeUpdate(sandwichesTableQueries[counter]);
 					}
@@ -114,6 +122,23 @@ public class SingletonDatabase {
 					resultSet = statement.executeQuery(drinkSelectQuery);
 					if(resultSet.next() == false) {
 						statement.executeUpdate(drinksTableQueries[counter]);
+					}
+				}
+				
+				String[] extras = {"5 pieces Chicken Nuggets", "French fries", "Sundae"};
+				String[] extrasTableQueries = {
+						"INSERT INTO extras(name, price, imageName, inventoryAmount) VALUES('5 pieces Chicken Nuggets', 25, 'chickennuggets.png', 100)",
+						"INSERT INTO extras(name, price, imageName, inventoryAmount) VALUES('French fries', 25, 'frenchfries.png', 100)",
+						"INSERT INTO extras(name, price, imageName, inventoryAmount) VALUES('Sundae', 25, 'sundae.png', 100)",
+						};
+				
+				for(int counter = 0; counter < extras.length; counter++) {
+					String extraSelectQuery = "SELECT * FROM extras WHERE name = '" + extras[counter] + "'";
+					
+					statement = connection.createStatement();
+					resultSet = statement.executeQuery(extraSelectQuery);
+					if(resultSet.next() == false) {
+						statement.executeUpdate(extrasTableQueries[counter]);
 					}
 				}
 			}
@@ -166,6 +191,29 @@ public class SingletonDatabase {
 		}
 		
 		return drinks;
+	}
+	
+	// Retrieves the list of extra products
+	public static ArrayList<String> retrieveExtras() {
+		ArrayList<String> extras = new ArrayList<String>();
+		
+		try {
+			connection = getConnection();
+			
+			if(connection != null) {
+				String query = "SELECT name FROM extras";
+				
+				Statement statement = connection.createStatement();
+				ResultSet resultSet = statement.executeQuery(query);
+				while(resultSet.next()) {
+					extras.add(resultSet.getString("name"));
+				}
+			}
+		} catch(SQLException sqle) {
+			System.err.println(sqle.getMessage());
+		}
+		
+		return extras;
 	}
 	
 	// Inserts a meal into the database after processing a valid order

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import jandjsandwiches.com.ph.model.drink.Drink;
+import jandjsandwiches.com.ph.model.extra.Extra;
 import jandjsandwiches.com.ph.model.sandwich.Sandwich;
 import jandjsandwiches.com.ph.utility.Prototype;
 import jandjsandwiches.com.ph.utility.SingletonDatabase;
@@ -31,10 +32,12 @@ public class HomepageServlet extends HttpServlet {
 		
 		ArrayList<String> sandwiches = SingletonDatabase.retrieveSandwiches();
 		ArrayList<String> drinks = SingletonDatabase.retrieveDrinks();
+		ArrayList<String> extras = SingletonDatabase.retrieveExtras();
 		
 		if(request.getServletPath().equals("/products")) {
 			ArrayList<Sandwich> sandwichPrototypes = new ArrayList<Sandwich>();
 			ArrayList<Drink> drinkPrototypes = new ArrayList<Drink>();
+			ArrayList<Extra> extraPrototypes = new ArrayList<Extra>();
 			
 			// Populates the array list with the sandwich prototypes
 			for(String sandwich : sandwiches) {
@@ -46,8 +49,14 @@ public class HomepageServlet extends HttpServlet {
 				drinkPrototypes.add(Prototype.getDrinkPrototype(drink));
 			}
 			
+			// Populates the array list with the drink prototypes
+			for(String extra : extras) {
+				extraPrototypes.add(Prototype.getExtraPrototype(extra));
+			}
+			
 			request.setAttribute("sandwichPrototypes", sandwichPrototypes);
 			request.setAttribute("drinkPrototypes", drinkPrototypes);
+			request.setAttribute("extraPrototypes", drinkPrototypes);
 			
 			request.getRequestDispatcher("products.jsp").forward(request, response);
 		}
