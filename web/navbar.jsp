@@ -9,63 +9,76 @@
 
         <div class="collapse navbar-collapse" id="mainNavbar">
             <ul class="navbar-nav mr-auto">
-                <% 
+            <% 
                 
-                	if(request.getParameter("activeClass") != null && request.getParameter("activeClass").equals("Home")) {
-                %>
+               	if(request.getParameter("activeClass") != null && request.getParameter("activeClass").equals("Home")) {
+            %>
                 <li class="nav-item active">
-                <%
+            <%
                 
-                	}
-                	else {
+               	}
+               	else {
                 		
-                %>
-                <li class="nav-item">
-                <%
-                	}
-                
-                %>
+            %>
+               	<li class="nav-item">
+            <%
+            	}
+            
+            %>
                     <a class="nav-link" href="/">Home</a>
                 </li>
 
-                <% 
-                
-                	if(request.getParameter("activeClass") != null && request.getParameter("activeClass").equals("Products")) {		
-                %>
+            <% 
+            
+            	if(request.getParameter("activeClass") != null && request.getParameter("activeClass").equals("Products")) {		
+            %>
                 <li class="nav-item active">
-                <%
-                		
-                	}
-                	else {
-                		
-                %>
+            <%
+            		
+            	}
+            	else {
+            		
+            %>
                 <li class="nav-item">
-                <%
-                	}
-                
-                %>
+            <%
+            	}
+            
+            %>
                     <a class="nav-link" href="/products">Products</a>
                 </li>
 
-                <% 
-                
-                	if(request.getParameter("activeClass") != null && request.getParameter("activeClass").equals("Order")) {
-                %>
+            <% 
+            
+            	if(request.getParameter("activeClass") != null && request.getParameter("activeClass").equals("Order")) {
+            %>
                 <li class="nav-item active">
-                <%
-                		
-                	}
-                	else {
-                		
-                %>
+            <%
+            		
+            	}
+            	else {
+            		
+            %>
                 <li class="nav-item">
-                <%
-                	}
-                
-                %>
+            <%
+            	}
+            
+            %>
                     <a class="nav-link" href="/choosemeal">Order</a>
                 </li>
             </ul>
+            
+            <% 
+            
+            	if(request.getParameter("activeClass") != null && (request.getParameter("activeClass").equals("Products") || request.getParameter("activeClass").equals("SearchResults"))) {
+            %>
+                <form action="searchresult.action" class="form-inline" method="post">
+                    <input aria-label="Search" class="form-control mr-3" name="keyword" placeholder="Search" type="search">
+                    <button class="btn btn-outline-warning" type="submit">Search</button>
+                </form>
+            <%
+            	}
+            		
+            %>
         </div>
     </div>
 </nav>
