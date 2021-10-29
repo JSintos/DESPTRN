@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import jandjsandwiches.com.ph.model.Meal;
 import jandjsandwiches.com.ph.model.drink.Drink;
 import jandjsandwiches.com.ph.model.sandwich.Sandwich;
 
@@ -67,7 +68,7 @@ public class SingletonDatabase {
 				statement = connection.createStatement();
 				statement.executeUpdate(extrasTableQuery);
 				
-				String mealsTableQuery = "CREATE TABLE IF NOT EXISTS meals(mealId int NOT NULL AUTO_INCREMENT, sandwichName varchar(50), sandwichDescription varchar(300), sandwichPrice double, sandwichIngredients varchar(300), sandwichCalorieCount int, sandwichImageName varchar(50), sandwichQuantity int, drinkName varchar(25), drinkPrice double, drinkImageName varchar(50), drinkQuantity int, PRIMARY KEY (mealId))";
+				String mealsTableQuery = "CREATE TABLE IF NOT EXISTS meals(mealId int NOT NULL AUTO_INCREMENT, items varchar(250), quantity int, PRIMARY KEY (mealId))";
 				
 				statement = connection.createStatement();
 				statement.executeUpdate(mealsTableQuery);
@@ -217,8 +218,8 @@ public class SingletonDatabase {
 	}
 	
 	// Inserts a meal into the database after processing a valid order
-	public static void insertMeal(Sandwich newSandwich, Drink newDrink, int sandwichQuantity, int drinkQuantity) {
-		String query = "INSERT INTO meals(sandwichName, sandwichDescription, sandwichPrice, sandwichIngredients, sandwichCalorieCount, sandwichImageName, sandwichQuantity, drinkName, drinkPrice, drinkImageName, drinkQuantity) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	public static void insertMeal(Meal newMeal, int quantity) {
+		String query = "INSERT INTO meals(items, quantity) VALUES(?, ?)";
 		
 		try {
 			connection = getConnection();
@@ -226,17 +227,8 @@ public class SingletonDatabase {
 			if(connection != null) {
 				PreparedStatement preparedStatement = connection.prepareStatement(query);
 				
-				preparedStatement.setString(1, newSandwich.getName());
-				preparedStatement.setString(2, newSandwich.getDescription());
-				preparedStatement.setString(3, newSandwich.getPrice());
-				preparedStatement.setString(4, newSandwich.getIngredients());
-				preparedStatement.setString(5, newSandwich.getCalorieCount());
-				preparedStatement.setString(6, newSandwich.getImageName());
-				preparedStatement.setInt(7, sandwichQuantity);
-				preparedStatement.setString(8, newDrink.getName());
-				preparedStatement.setString(9, newDrink.getPrice());
-				preparedStatement.setString(10, newDrink.getImageName());
-				preparedStatement.setInt(11, drinkQuantity);
+				preparedStatement.setString(1, newMeal.getItemList());
+				preparedStatement.setInt(2, quantity);
 				
 				preparedStatement.executeUpdate();
 			}
