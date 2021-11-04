@@ -1,8 +1,8 @@
-package jandjsandwiches.com.ph.model.drink;
+package jandjsandwiches.com.ph.model.extra;
 
 import jandjsandwiches.com.ph.model.Item;
 
-public abstract class Drink implements Item {
+public abstract class Extra implements Item {
 	public String name, price, imageName;
 	
 	@Override
@@ -35,5 +35,5 @@ public abstract class Drink implements Item {
 		this.imageName = imageName;
 	}
 
-	public abstract Drink clone();
+	public abstract Extra clone();
 }
