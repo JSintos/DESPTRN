@@ -24,6 +24,21 @@
                     <a class="nav-link" href="/">Home</a>
                 </li>
 
+			<% 
+            	if(request.getParameter("activeClass") != null && request.getParameter("activeClass").equals("Products")) {
+            %>
+                <li class="nav-item active">
+            <%
+            	}
+            	else {	
+            %>
+                <li class="nav-item">
+            <%
+            	}
+            %>
+                    <a class="nav-link" href="/products">Products</a>
+                </li>
+
             <% 
             	if(request.getParameter("activeClass") != null && request.getParameter("activeClass").equals("Order")) {
             %>

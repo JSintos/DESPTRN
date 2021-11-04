@@ -9,6 +9,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import jandjsandwiches.com.ph.model.Meal;
+import jandjsandwiches.com.ph.model.drink.Drink;
+import jandjsandwiches.com.ph.model.extra.Extra;
+import jandjsandwiches.com.ph.model.sandwich.Sandwich;
 
 public class SingletonDatabase {
 	private static Connection connection;
@@ -66,7 +69,7 @@ public class SingletonDatabase {
 				statement = connection.createStatement();
 				statement.executeUpdate(extrasTableQuery);
 				
-				String mealsTableQuery = "CREATE TABLE IF NOT EXISTS meals(mealId int NOT NULL AUTO_INCREMENT, items varchar(100), totalCost double, quantity 1, PRIMARY KEY (mealId))";
+				String mealsTableQuery = "CREATE TABLE IF NOT EXISTS meals(mealId int NOT NULL AUTO_INCREMENT, items varchar(100), totalCost double, quantity int, PRIMARY KEY (mealId))";
 				
 				statement = connection.createStatement();
 				statement.executeUpdate(mealsTableQuery);
@@ -123,9 +126,9 @@ public class SingletonDatabase {
 				
 				String[] extras = {"5 pieces chicken nuggets", "French fries", "Sundae"};
 				String[] extrasTableQueries = {
-						"INSERT INTO drinks(name, price, imageName, inventoryAmount) VALUES('5 pieces chicken nuggets', 25, 'chickennuggets.png', 100)",
-						"INSERT INTO drinks(name, price, imageName, inventoryAmount) VALUES('French fries', 25, 'frenchfries.png', 100)",
-						"INSERT INTO drinks(name, price, imageName, inventoryAmount) VALUES('Sundae', 25, 'sundae.png', 100)",
+						"INSERT INTO extras(name, price, imageName, inventoryAmount) VALUES('5 pieces chicken nuggets', 25, 'chickennuggets.png', 100)",
+						"INSERT INTO extras(name, price, imageName, inventoryAmount) VALUES('French fries', 25, 'frenchfries.png', 100)",
+						"INSERT INTO extras(name, price, imageName, inventoryAmount) VALUES('Sundae', 25, 'sundae.png', 100)",
 						};
 				
 				for(int counter = 0; counter < extras.length; counter++) {
@@ -231,5 +234,77 @@ public class SingletonDatabase {
 		} catch(SQLException sqle) {
 			System.err.println(sqle.getMessage());
 		}
+	}
+	
+	public static ArrayList<Sandwich> getSandwichSearchResults(String keyword) {
+		ArrayList<Sandwich> sandwichPrototypes = new ArrayList<Sandwich>();
+		String query = "SELECT * FROM sandwiches WHERE name LIKE ?";
+		
+		try {
+			connection = getConnection();
+			
+			if(connection != null) {
+				PreparedStatement preparedStatement = connection.prepareStatement(query);
+				
+				preparedStatement.setString(1, "%" + keyword + "%");
+				
+				ResultSet resultSet = preparedStatement.executeQuery();
+				while(resultSet.next()) {
+					sandwichPrototypes.add(Prototype.getSandwichPrototype(resultSet.getString("name")));
+				}
+			}
+		} catch(SQLException sqle) {
+			System.err.println(sqle.getMessage());
+		}
+		
+		return sandwichPrototypes;
+	}
+	
+	public static ArrayList<Drink> getDrinkSearchResults(String keyword) {
+		ArrayList<Drink> drinkPrototypes = new ArrayList<Drink>();
+		String query = "SELECT * FROM drinks WHERE name LIKE ?";
+		
+		try {
+			connection = getConnection();
+			
+			if(connection != null) {
+				PreparedStatement preparedStatement = connection.prepareStatement(query);
+				
+				preparedStatement.setString(1, "%" + keyword + "%");
+				
+				ResultSet resultSet = preparedStatement.executeQuery();
+				while(resultSet.next()) {
+					drinkPrototypes.add(Prototype.getDrinkPrototype(resultSet.getString("name")));
+				}
+			}
+		} catch(SQLException sqle) {
+			System.err.println(sqle.getMessage());
+		}
+		
+		return drinkPrototypes;
+	}
+	
+	public static ArrayList<Extra> getExtraSearchResults(String keyword) {
+		ArrayList<Extra> extraPrototypes = new ArrayList<Extra>();
+		String query = "SELECT * FROM extras WHERE name LIKE ?";
+		
+		try {
+			connection = getConnection();
+			
+			if(connection != null) {
+				PreparedStatement preparedStatement = connection.prepareStatement(query);
+				
+				preparedStatement.setString(1, "%" + keyword + "%");
+				
+				ResultSet resultSet = preparedStatement.executeQuery();
+				while(resultSet.next()) {
+					extraPrototypes.add(Prototype.getExtraPrototype(resultSet.getString("name")));
+				}
+			}
+		} catch(SQLException sqle) {
+			System.err.println(sqle.getMessage());
+		}
+		
+		return extraPrototypes;
 	}
 }

@@ -5,6 +5,7 @@
 <%@ page import="java.util.Iterator" %>
 <%@ page import="jandjsandwiches.com.ph.model.sandwich.Sandwich" %>
 <%@ page import="jandjsandwiches.com.ph.model.drink.Drink" %>
+<%@ page import="jandjsandwiches.com.ph.model.extra.Extra" %>
 
 <!DOCTYPE html>
 
@@ -27,6 +28,7 @@
         <%
 			ArrayList<Sandwich> sandwichPrototypes = (ArrayList) request.getAttribute("sandwichPrototypes");
 			ArrayList<Drink> drinkPrototypes = (ArrayList) request.getAttribute("drinkPrototypes");
+			ArrayList<Extra> extraPrototypes = (ArrayList) request.getAttribute("extraPrototypes");
 		%>
 
         <jsp:include page="navbar.jsp">
@@ -106,6 +108,48 @@
                                             <div class="card-body">
                                                 <h3 class="card-title">
                                                     <strong><%= drinkPrototype.getName() %> | Php <%= drinkPrototype.getPrice() %></strong>
+                                                </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <%
+                            }
+                        }
+                    
+                    %>
+                </div>
+            </div>
+            
+            <div class="mt-5">
+                <%
+                
+                    if(!extraPrototypes.isEmpty()){
+                %>
+                        <h1>Extras</h1>
+                <%
+                    }
+
+                %>
+                <div>
+                    <%
+
+                        if(extraPrototypes != null){
+                            Iterator<Extra> extraPrototypesIterator = extraPrototypes.iterator();
+                            
+                            while(extraPrototypesIterator.hasNext()){
+                                Extra extraPrototype = extraPrototypesIterator.next();
+                            %>
+                                <div class="card mb-3 h-50">
+                                    <div class="row">
+                                        <div class="col">
+                                            <img alt="<%= extraPrototype.getName() %>" class="card-img" src="assets/images/<%= extraPrototype.getImageName() %>">
+                                        </div>
+
+                                        <div class="col-9">
+                                            <div class="card-body">
+                                                <h3 class="card-title">
+                                                    <strong><%= extraPrototype.getName() %> | Php <%= extraPrototype.getPrice() %></strong>
                                                 </h3>
                                             </div>
                                         </div>
