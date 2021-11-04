@@ -1,22 +1,35 @@
 package jandjsandwiches.com.ph.model;
 
-import jandjsandwiches.com.ph.model.drink.Drink;
-import jandjsandwiches.com.ph.model.sandwich.Sandwich;
+import java.util.ArrayList;
+
 import jandjsandwiches.com.ph.utility.Facade;
 import jandjsandwiches.com.ph.utility.SingletonDatabase;
 
 public class Register implements Facade {
-	Sandwich newSandwich;
-	Drink newDrink;
-	int sandwichQuantity, drinkQuantity;
+	Meal newMeal;
+	int quantity;
 	String creditCardNumber;
 	
-	public Register(Sandwich newSandwich, Drink newDrink, int sandwichQuantity, int drinkQuantity, String creditCardNumber) {
-		this.newSandwich = newSandwich;
-		this.newDrink = newDrink;
-		this.sandwichQuantity = sandwichQuantity;
-		this.drinkQuantity = drinkQuantity;
+	public Register(Meal newMeal, int quantity, String creditCardNumber) {
+		this.newMeal = newMeal;
+		this.quantity = quantity;
 		this.creditCardNumber = creditCardNumber;
+	}
+
+	public Meal getNewMeal() {
+		return newMeal;
+	}
+
+	public void setNewMeal(Meal newMeal) {
+		this.newMeal = newMeal;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 	
 	public String getCreditCardNumber() {
@@ -25,38 +38,6 @@ public class Register implements Facade {
 
 	public void setCreditCardNumber(String creditCardNumber) {
 		this.creditCardNumber = creditCardNumber;
-	}
-
-	public Sandwich getNewSandwich() {
-		return newSandwich;
-	}
-
-	public void setNewSandwich(Sandwich newSandwich) {
-		this.newSandwich = newSandwich;
-	}
-
-	public Drink getNewDrink() {
-		return newDrink;
-	}
-
-	public void setNewDrink(Drink newDrink) {
-		this.newDrink = newDrink;
-	}
-	
-	public int getSandwichQuantity() {
-		return sandwichQuantity;
-	}
-
-	public void setSandwichQuantity(int sandwichQuantity) {
-		this.sandwichQuantity = sandwichQuantity;
-	}
-
-	public int getDrinkQuantity() {
-		return drinkQuantity;
-	}
-
-	public void setDrinkQuantity(int drinkQuantity) {
-		this.drinkQuantity = drinkQuantity;
 	}
 
 	public static boolean validateCreditCard(String creditCardNumber) {
@@ -83,24 +64,30 @@ public class Register implements Facade {
 	
 	@Override
 	public String processOrder() {
-		// Checks whether the chosen product's inventory amount is greater than or equal to the corresponding quantity
-		if(InventoryManager.getInventoryAmount("sandwich", newSandwich.getName()) >= sandwichQuantity &&
-		   InventoryManager.getInventoryAmount("drink", newDrink.getName()) >= drinkQuantity) {
-			// Checks whether the inputted credit card number is valid
-			if(validateCreditCard(creditCardNumber) && !creditCardNumber.equals("")) {
-				SingletonDatabase.insertMeal(newSandwich, newDrink, sandwichQuantity, drinkQuantity);
-				
-				InventoryManager.deductInventory("sandwich", newSandwich.getName(), sandwichQuantity);
-				InventoryManager.deductInventory("drink", newDrink.getName(), drinkQuantity);
-
-				return "Success";
+		ArrayList<Item> items = newMeal.getItems();
+		
+		// Checks whether the meal's item's inventory amount is depleted or less than the inputted quantity
+		for(Item item : items) {
+			if(InventoryManager.getInventoryAmount(item.getName()) == 0) {
+				return "Sorry, we ran out of " + item.getName() + ".";
 			}
-			else {
-				return "Invalid credit card number";
+			else if(InventoryManager.getInventoryAmount(item.getName()) < quantity) {
+				return "Sorry, we only have " + InventoryManager.getInventoryAmount(item.getName()) + " pieces left of " + item.getName() + ".";
 			}
 		}
+		
+		// Checks whether the inputted credit card number is valid
+		if(validateCreditCard(creditCardNumber) && !creditCardNumber.equals("")) {
+			SingletonDatabase.insertMeal(newMeal, quantity);
+			
+			for(Item item : items) {
+				InventoryManager.deductInventory(item.getName(), quantity);
+			}
+			
+			return "Success!";
+		}
 		else {
-			return "Insufficient inventory amount";
+			return "Invalid credit card number.";
 		}
 	}
 }

@@ -7,18 +7,23 @@ import java.sql.SQLException;
 import jandjsandwiches.com.ph.utility.SingletonDatabase;
 
 public class InventoryManager {
+	private static String determineProduct(String type) {
+		if(SingletonDatabase.retrieveSandwiches().contains(type)) {
+			return "sandwiches";
+		}
+		else if(SingletonDatabase.retrieveDrinks().contains(type)) {
+			return "drinks";
+		}
+		else {
+			return "extras";
+		}
+	}
+	
 	// Returns the specified product's inventory amount
-	public static int getInventoryAmount(String product, String type) {
+	public static int getInventoryAmount(String type) {
 		try {
 			if(SingletonDatabase.getConnection() != null) {
-				String query = "";
-				
-				if(product.equals("sandwich")) {
-					query = "SELECT inventoryAmount FROM sandwiches WHERE name = ?";
-				}
-				else {
-					query = "SELECT inventoryAmount FROM drinks WHERE name = ?";
-				}
+				String query = "SELECT inventoryAmount FROM " + determineProduct(type) + " WHERE name = ?";
 				
 				PreparedStatement preparedStatement = SingletonDatabase.getConnection().prepareStatement(query);
 				
@@ -37,19 +42,12 @@ public class InventoryManager {
 	}
 	
 	// Deducts the specified product's inventory amount by the quantity ordered by the user
-	public static void deductInventory(String product, String type, int quantity) {
-		int currentInventoryAmount = getInventoryAmount(product, type);
+	public static void deductInventory(String type, int quantity) {
+		int currentInventoryAmount = getInventoryAmount(type);
 		
 		try {
 			if(SingletonDatabase.getConnection() != null) {
-				String query = "";
-				
-				if(product.equals("sandwich")) {
-					query = "UPDATE sandwiches SET inventoryAmount = ? WHERE name = ?";
-				}
-				else {
-					query = "UPDATE drinks SET inventoryAmount = ? WHERE name = ?";
-				}
+				String query = "UPDATE " + determineProduct(type) + " SET inventoryAmount = ? WHERE name = ?";
 				
 				PreparedStatement preparedStatement = SingletonDatabase.getConnection().prepareStatement(query);
 				

@@ -9,6 +9,10 @@ public class Meal {
 		items.add(item);
 	}
 	
+	public ArrayList<Item> getItems(){
+		return items;
+	}
+	
 	public String getItemList() {
 		String itemList = "";
 		
