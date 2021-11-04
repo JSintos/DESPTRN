@@ -1,6 +1,7 @@
 package jandjsandwiches.com.ph.utility;
 
 import jandjsandwiches.com.ph.model.drink.Drink;
+import jandjsandwiches.com.ph.model.extra.Extra;
 import jandjsandwiches.com.ph.model.sandwich.AmericanSub;
 import jandjsandwiches.com.ph.model.sandwich.Bacon;
 import jandjsandwiches.com.ph.model.sandwich.BaconEggCheese;
@@ -34,6 +35,11 @@ public class SandwichFactory implements AbstractFactory {
 
 	@Override
 	public Drink createDrink(String drinkType) {
+		return null;
+	}
+	
+	@Override
+	public Extra createExtra(String extraType) {
 		return null;
 	}
 }
