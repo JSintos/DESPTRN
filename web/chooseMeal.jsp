@@ -22,11 +22,6 @@
 	</head>
 
 	<body>
-		<%
-			ArrayList<String> sandwiches = (ArrayList) request.getAttribute("sandwiches");
-			ArrayList<String> drinks = (ArrayList) request.getAttribute("drinks");
-		%>
-
 		<jsp:include page="navbar.jsp">
        		<jsp:param name="activeClass" value="Order" />
        	</jsp:include>
@@ -47,99 +42,73 @@
 				</div>
 			</div>
 	
-			<h3 class="mt-3">Choose a sandwich:</h3>
+			<h3 class="mt-3">Choose a set meal:</h3>
 	
-			<form action='choosemeal.action' class="form-group mt-3" method="post">
-				<div class="row">
-					<div class="col-3">
-						<div class="form-group">
-							<select class="form-control" name="sandwichType">
-								<%
+			<div class="row mt-3">
+				<div class="col">
+					<div class="card">
+						<div class="card-body">
+							<h3 class="card-title">J&J 1</h3>
 
-									if(sandwiches != null){
-										Iterator<String> sandwichesIterator = sandwiches.iterator();
-										
-										while(sandwichesIterator.hasNext()){
-											String sandwich = sandwichesIterator.next();
-										%>
-											<option value="<%= sandwich %>"><%= sandwich %></option>
-										<%
-										}
-									}
-								
-								%>
-							</select>
+							<p class="card-text mt-3">Includes a sandwich of your choice and a drink of your choice.</p>
+
+							<form action="choosemeal.action" class="mt-3" method="post">
+								<input name="setMeal" type="hidden" value="1">
+								<button class="btn btn-warning" type="submit">Choose J&J 1</button>
+							</form>
 						</div>
-					</div>
-
-					<div class="col-2">
-						<div class="form-group">
-							<input class="form-control" min="1" name="sandwichQuantity" placeholder="Quantity" type="number">
-						</div>
-					</div>
-
-					<div class="col-3">
-						<div class="form-group">
-							<input class="form-control" name="creditCardNumber" placeholder="Credit card number" type="text">
-						</div>
-					</div>
-
-					<div class="col-2">
-						<button class="btn btn-warning" type="submit">Order Meal</button>
 					</div>
 				</div>
 
-				<div class="row">
-					<div class="col-3">
-						<div class="form-group">
-							<select class="form-control" name="drinkType">
-								<%
+				<div class="col">
+					<div class="card">
+						<div class="card-body">
+							<h3 class="card-title">J&J 2</h3>
 
-									if(drinks != null){
-										Iterator<String> drinksIterator = drinks.iterator();
-										
-										while(drinksIterator.hasNext()){
-											String drink = drinksIterator.next();
-										%>
-											<option value="<%= drink %>"><%= drink %></option>
-										<%
-										}
-									}
-								
-								%>
-							</select>
-						</div>
-					</div>
+							<p class="card-text mt-3">Includes a sandwich of your choice, a drink of your choice, and an extra of your choice.</p>
 
-					<div class="col-2">
-						<div class="form-group">
-							<input class="form-control" min="1" name="drinkQuantity" placeholder="Quantity" type="number">
+							<form action="choosemeal.action" class="mt-3" method="post">
+								<input name="setMeal" type="hidden" value="2">
+								<button class="btn btn-warning" type="submit">Choose J&J 2</button>
+							</form>
 						</div>
 					</div>
 				</div>
-			</form>
+
+				<div class="col">
+					<div class="card">
+						<div class="card-body">
+							<h3 class="card-title">J&J 3</h3>
+
+							<p class="card-text mt-3">Includes a sandwich of your choice and an extra of your choice.</p>
+
+							<form action="choosemeal.action" class="mt-3" method="post">
+								<input name="setMeal" type="hidden" value="3">
+								<button class="btn btn-warning" type="submit">Choose J&J 3</button>
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<div class="col">
+					<div class="card">
+						<div class="card-body">
+							<h3 class="card-title">J&J 4</h3>
+
+							<p class="card-text mt-3">Includes an extra of your choice.</p>
+
+							<form action="choosemeal.action" class="mt-3" method="post">
+								<input name="setMeal" type="hidden" value="4">
+								<button class="btn btn-warning" type="submit">Choose J&J 4</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
 	
-			<div class="fixed-bottom text-center mb-3">
+			<div class="text-center mt-5 mb-3">
 				<small>&copy; 2021 Joshua Lagerejos & Joshua Sintos</small>
 			</div>
 		</div>
 	</body>
-	
-	<%
-	
-		if(request.getAttribute("triggerAlert") != null){
-			if(request.getAttribute("triggerAlert").equals("Insufficient inventory amount")){
-			
-	%>
-			<script>alert("Insufficient inventory amount. Please try again.");</script>
-	<%
-			}
-			else if(request.getAttribute("triggerAlert").equals("Invalid credit card number")) {
-	%>
-			<script>alert("Invalid credit card number. Please try again.");</script>
-	<%
-			}
-		}
-	
-	%>
 </html>

@@ -61,4 +61,14 @@
   	<servlet-name>ChooseMealServlet</servlet-name>
   	<url-pattern>/choosemeal.action</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>OrderMealServlet</servlet-name>
+    <servlet-class>jandjsandwiches.com.ph.controller.OrderMealServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>OrderMealServlet</servlet-name>
+    <url-pattern>/ordermeal.action</url-pattern>
+  </servlet-mapping>
 </web-app>

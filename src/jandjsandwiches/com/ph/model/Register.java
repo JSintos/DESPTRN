@@ -6,22 +6,22 @@ import jandjsandwiches.com.ph.utility.Facade;
 import jandjsandwiches.com.ph.utility.SingletonDatabase;
 
 public class Register implements Facade {
-	Meal newMeal;
+	Meal meal;
 	int quantity;
 	String creditCardNumber;
 	
-	public Register(Meal newMeal, int quantity, String creditCardNumber) {
-		this.newMeal = newMeal;
+	public Register(Meal meal, int quantity, String creditCardNumber) {
+		this.meal = meal;
 		this.quantity = quantity;
 		this.creditCardNumber = creditCardNumber;
 	}
 
-	public Meal getNewMeal() {
-		return newMeal;
+	public Meal getMeal() {
+		return meal;
 	}
 
-	public void setNewMeal(Meal newMeal) {
-		this.newMeal = newMeal;
+	public void setMeal(Meal meal) {
+		this.meal = meal;
 	}
 
 	public int getQuantity() {
@@ -63,31 +63,31 @@ public class Register implements Facade {
 	}
 	
 	@Override
-	public String processOrder() {
-		ArrayList<Item> items = newMeal.getItems();
+	public String[] processOrder() {
+		ArrayList<Item> items = meal.getItems();
 		
 		// Checks whether the meal's item's inventory amount is depleted or less than the inputted quantity
 		for(Item item : items) {
 			if(InventoryManager.getInventoryAmount(item.getName()) == 0) {
-				return "Sorry, we ran out of " + item.getName() + ".";
+				return new String[]{"0", "Sorry, we ran out of " + item.getName() + "."};
 			}
 			else if(InventoryManager.getInventoryAmount(item.getName()) < quantity) {
-				return "Sorry, we only have " + InventoryManager.getInventoryAmount(item.getName()) + " pieces left of " + item.getName() + ".";
+				return new String[]{"0", "Sorry, we only have " + InventoryManager.getInventoryAmount(item.getName()) + " pieces left of " + item.getName() + "."};
 			}
 		}
 		
 		// Checks whether the inputted credit card number is valid
 		if(validateCreditCard(creditCardNumber) && !creditCardNumber.equals("")) {
-			SingletonDatabase.insertMeal(newMeal, quantity);
+			SingletonDatabase.insertMeal(meal, quantity);
 			
 			for(Item item : items) {
 				InventoryManager.deductInventory(item.getName(), quantity);
 			}
 			
-			return "Success!";
+			return new String[]{"1", "Success!"};
 		}
 		else {
-			return "Invalid credit card number.";
+			return new String[]{"0", "Invalid credit card number."};
 		}
 	}
 }

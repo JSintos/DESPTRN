@@ -5,7 +5,7 @@ import jandjsandwiches.com.ph.model.extra.Extra;
 import jandjsandwiches.com.ph.model.sandwich.Sandwich;
 
 public class MealBuilder {
-	public Meal prepareSetMealOne(Sandwich sandwich, Drink drink) {
+	public static Meal prepareSetMealOne(Sandwich sandwich, Drink drink) {
 		Meal meal = new Meal();
 		
 		meal.addItem(sandwich);
@@ -14,7 +14,7 @@ public class MealBuilder {
 		return meal;
 	}
 	
-	public Meal prepareSetMealTwo(Sandwich sandwich, Drink drink, Extra extra) {
+	public static Meal prepareSetMealTwo(Sandwich sandwich, Drink drink, Extra extra) {
 		Meal meal = new Meal();
 		
 		meal.addItem(sandwich);
@@ -24,7 +24,7 @@ public class MealBuilder {
 		return meal;
 	}
 	
-	public Meal prepareSetMealThree(Sandwich sandwich, Extra extra) {
+	public static Meal prepareSetMealThree(Sandwich sandwich, Extra extra) {
 		Meal meal = new Meal();
 		
 		meal.addItem(sandwich);
@@ -33,7 +33,7 @@ public class MealBuilder {
 		return meal;
 	}
 	
-	public Meal prepareSetMealFour(Extra extra) {
+	public static Meal prepareSetMealFour(Extra extra) {
 		Meal meal = new Meal();
 		
 		meal.addItem(extra);

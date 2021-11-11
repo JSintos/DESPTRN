@@ -18,7 +18,10 @@ public class Meal {
 		
 		for(int counter = 0; counter < items.size(); counter++) {
 			if(counter != items.size() - 1) {
-				itemList += items.get(counter) + ", ";
+				itemList += items.get(counter).getName() + ", ";
+			}
+			else {
+				itemList += items.get(counter).getName();
 			}
 		}
 		
