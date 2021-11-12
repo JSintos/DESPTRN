@@ -27,14 +27,4 @@ public class Meal {
 		
 		return itemList;
 	}
-	
-	public double getTotalCost() {
-		double totalCost = 0.0;
-		
-		for(Item item : items) {
-			totalCost += Double.parseDouble(item.getPrice());
-		}
-		
-		return totalCost;
-	}
 }

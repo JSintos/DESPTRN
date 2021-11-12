@@ -62,6 +62,17 @@ public class Register implements Facade {
         return (s1 + s2) % 10 == 0;
 	}
 	
+	public double getTotalCost() {
+		ArrayList<Item> items = meal.getItems();
+		
+		double totalCost = 0.0;
+		for(Item item : items) {
+			totalCost += Double.parseDouble(item.getPrice());
+		}
+		
+		return totalCost * quantity;
+	}
+	
 	@Override
 	public String[] processOrder() {
 		ArrayList<Item> items = meal.getItems();
@@ -78,7 +89,7 @@ public class Register implements Facade {
 		
 		// Checks whether the inputted credit card number is valid
 		if(validateCreditCard(creditCardNumber) && !creditCardNumber.equals("")) {
-			SingletonDatabase.insertMeal(meal, quantity);
+			SingletonDatabase.insertMeal(meal, getTotalCost(), quantity);
 			
 			for(Item item : items) {
 				InventoryManager.deductInventory(item.getName(), quantity);
