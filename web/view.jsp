@@ -63,7 +63,7 @@
 			<div class="row">
 				<div class="col-1"></div>
 				<%
-					Iterator<Item> itemsIterator = meal.getItems().iterator();
+					Iterator<Item> itemsIterator = meal.createIterator();
 				
 					while(itemsIterator.hasNext()){
 						Item item = itemsIterator.next();
