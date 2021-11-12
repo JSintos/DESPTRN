@@ -68,6 +68,10 @@ public class OrderMealServlet extends HttpServlet {
 		Register register = new Register(newMeal, Integer.parseInt(quantity), creditCardNumber);
 		// Order was processed successfully
 		if(register.processOrder()[0].equals("1")) {
+			request.setAttribute("sandwiches", SingletonDatabase.retrieveSandwiches());
+			request.setAttribute("drinks", SingletonDatabase.retrieveDrinks());
+			request.setAttribute("extras", SingletonDatabase.retrieveExtras());
+			
 			request.setAttribute("meal", newMeal);
 			
 			request.getRequestDispatcher("view.jsp").forward(request, response);

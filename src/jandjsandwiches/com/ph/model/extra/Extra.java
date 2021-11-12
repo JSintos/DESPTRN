@@ -3,7 +3,7 @@ package jandjsandwiches.com.ph.model.extra;
 import jandjsandwiches.com.ph.model.Item;
 
 public abstract class Extra implements Item {
-	public String name, price, imageName;
+public String name, price, imageName;
 	
 	@Override
 	public String getName() {
@@ -16,6 +16,15 @@ public abstract class Extra implements Item {
 	}
 	
 	@Override
+	public String getDescription() {
+		return null;
+	}
+	
+	@Override
+	public void setDescription(String description) {
+	}
+	
+	@Override
 	public String getPrice() {
 		return price;
 	}
@@ -23,6 +32,24 @@ public abstract class Extra implements Item {
 	@Override
 	public void setPrice(String price) {
 		this.price = price;
+	}
+	
+	@Override
+	public String getIngredients() {
+		return null;
+	}
+	
+	@Override
+	public void setIngredients(String ingredients) {
+	}
+
+	@Override
+	public String getCalorieCount() {
+		return null;
+	}
+	
+	@Override
+	public void setCalorieCount(String calorieCount) {
 	}
 	
 	@Override

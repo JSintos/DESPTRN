@@ -15,10 +15,12 @@ public abstract class Sandwich implements Item {
 		this.name = name;
 	}
 	
+	@Override
 	public String getDescription() {
 		return description;
 	}
 	
+	@Override
 	public void setDescription(String description) {
 		this.description = description;
 	}
@@ -33,18 +35,22 @@ public abstract class Sandwich implements Item {
 		this.price = price;
 	}
 	
+	@Override
 	public String getIngredients() {
 		return ingredients;
 	}
 	
+	@Override
 	public void setIngredients(String ingredients) {
 		this.ingredients = ingredients;
 	}
 
+	@Override
 	public String getCalorieCount() {
 		return calorieCount;
 	}
 	
+	@Override
 	public void setCalorieCount(String calorieCount) {
 		this.calorieCount = calorieCount;
 	}
