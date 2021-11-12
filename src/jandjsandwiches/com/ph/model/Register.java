@@ -1,6 +1,7 @@
 package jandjsandwiches.com.ph.model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import jandjsandwiches.com.ph.utility.Facade;
 import jandjsandwiches.com.ph.utility.SingletonDatabase;
@@ -62,12 +63,27 @@ public class Register implements Facade {
         return (s1 + s2) % 10 == 0;
 	}
 	
+	public double getTotalCost() {
+		Iterator<Item> itemsIterator = meal.createIterator();
+		
+		double totalCost = 0.0;
+		while(itemsIterator.hasNext()){
+			Item item = itemsIterator.next();
+			
+			totalCost += Double.parseDouble(item.getPrice());
+		}
+		
+		return totalCost * quantity;
+	}
+	
 	@Override
 	public String[] processOrder() {
-		ArrayList<Item> items = meal.getItems();
+		Iterator<Item> itemsIterator = meal.createIterator();
 		
 		// Checks whether the meal's item's inventory amount is depleted or less than the inputted quantity
-		for(Item item : items) {
+		while(itemsIterator.hasNext()){
+			Item item = itemsIterator.next();
+			
 			if(InventoryManager.getInventoryAmount(item.getName()) == 0) {
 				return new String[]{"0", "Sorry, we ran out of " + item.getName() + "."};
 			}
@@ -76,11 +92,15 @@ public class Register implements Facade {
 			}
 		}
 		
+		// Resets the iterator
+		itemsIterator = meal.createIterator();
 		// Checks whether the inputted credit card number is valid
 		if(validateCreditCard(creditCardNumber) && !creditCardNumber.equals("")) {
-			SingletonDatabase.insertMeal(meal, quantity);
+			SingletonDatabase.insertMeal(meal, getTotalCost(), quantity);
 			
-			for(Item item : items) {
+			while(itemsIterator.hasNext()){
+				Item item = itemsIterator.next();
+				
 				InventoryManager.deductInventory(item.getName(), quantity);
 			}
 			

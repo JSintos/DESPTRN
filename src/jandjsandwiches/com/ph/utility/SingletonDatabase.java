@@ -216,7 +216,7 @@ public class SingletonDatabase {
 	}
 	
 	// Inserts a meal into the database after processing a valid order
-	public static void insertMeal(Meal newMeal, int quantity) {
+	public static void insertMeal(Meal newMeal, double totalCost, int quantity) {
 		String query = "INSERT INTO meals(items, totalCost, quantity) VALUES(?, ?, ?)";
 		
 		try {
@@ -226,7 +226,7 @@ public class SingletonDatabase {
 				PreparedStatement preparedStatement = connection.prepareStatement(query);
 				
 				preparedStatement.setString(1, newMeal.getItemList());
-				preparedStatement.setDouble(2, newMeal.getTotalCost());
+				preparedStatement.setDouble(2, totalCost);
 				preparedStatement.setInt(3, quantity);
 				
 				preparedStatement.executeUpdate();

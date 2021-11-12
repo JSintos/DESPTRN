@@ -31,6 +31,8 @@
 		<%
 			Meal meal = (Meal) request.getAttribute("meal");
 		
+			double totalCost = (double) request.getAttribute("totalCost"); 
+		
 			ArrayList<String> sandwiches = (ArrayList) request.getAttribute("sandwiches");
 			ArrayList<String> drinks = (ArrayList) request.getAttribute("drinks");
 			ArrayList<String> extras = (ArrayList) request.getAttribute("extras");
@@ -58,7 +60,7 @@
 
 			<% DecimalFormat decimalFormat = new DecimalFormat("#0.00"); %>
 
-			<h5 class="my-4">The total cost is Php <%= decimalFormat.format(meal.getTotalCost()) %></h5>
+			<h5 class="my-4">The total cost is Php <%= decimalFormat.format(totalCost) %></h5>
 
 			<div class="row">
 				<div class="col-1"></div>
