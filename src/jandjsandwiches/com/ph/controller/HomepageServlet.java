@@ -34,20 +34,13 @@ public class HomepageServlet extends HttpServlet {
 		
 		if(request.getServletPath().equals("/products")) {
 			ArrayList<Sandwich> sandwichPrototypes = new ArrayList<Sandwich>();
-			ArrayList<Drink> drinkPrototypes = new ArrayList<Drink>();
 			
 			// Populates the array list with the sandwich prototypes
 			for(String sandwich : sandwiches) {
 				sandwichPrototypes.add(Prototype.getSandwichPrototype(sandwich));
 			}
 			
-			// Populates the array list with the drink prototypes
-			for(String drink : drinks) {
-				drinkPrototypes.add(Prototype.getDrinkPrototype(drink));
-			}
-			
 			request.setAttribute("sandwichPrototypes", sandwichPrototypes);
-			request.setAttribute("drinkPrototypes", drinkPrototypes);
 			
 			request.getRequestDispatcher("products.jsp").forward(request, response);
 		}

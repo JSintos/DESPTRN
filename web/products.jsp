@@ -4,7 +4,6 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Iterator" %>
 <%@ page import="jandjsandwiches.com.ph.model.sandwich.Sandwich" %>
-<%@ page import="jandjsandwiches.com.ph.model.drink.Drink" %>
 
 <!DOCTYPE html>
 
@@ -26,7 +25,6 @@
     <body>
         <%
 			ArrayList<Sandwich> sandwichPrototypes = (ArrayList) request.getAttribute("sandwichPrototypes");
-			ArrayList<Drink> drinkPrototypes = (ArrayList) request.getAttribute("drinkPrototypes");
 		%>
 
         <jsp:include page="navbar.jsp">
