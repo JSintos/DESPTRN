@@ -89,7 +89,7 @@ The class that handles the inventory amount of the sandwiches, drinks, and extra
 ## UML Diagram
 
 <p align="center">
-    <img alt="DESPTRN - Machine Problem 6 UML" src="https://github.com/JSintos/DESPTRN/blob/machineproblem6.1/DESPTRN%20-%20Machine%20Problem%206%20UML.png?raw=true">
+    <img alt="DESPTRN - Machine Problem 7 UML" src="https://github.com/JSintos/DESPTRN/blob/machineproblem7/DESPTRN%20-%20Machine%20Problem%207%20UML.png?raw=true">
 </p>
 
 ## Collaborators
