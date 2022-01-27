@@ -16,13 +16,13 @@ Our idea for our e-commerce platform involves a business that primarily sells sa
 
 ## Directory
 
--   [Machine Problem 1.2] (https://github.com/JSintos/DESPTRN/tree/machineproblem1.2) focuses on the Factory Method design pattern
--   [Machine Problem 2] (https://github.com/JSintos/DESPTRN/tree/machineproblem2) focuses on the Abstract Factory design pattern
--   [Machine Problem 3] (https://github.com/JSintos/DESPTRN/tree/machineproblem3) focuses on the Singleton design pattern
--   [Machine Problem 4] (https://github.com/JSintos/DESPTRN/tree/machineproblem4) focuses on the Prototype design pattern
--   [Machine Problem 5] (https://github.com/JSintos/DESPTRN/tree/machineproblem5) focuses on the Facade design pattern
--   [Machine Problem 6.1] (https://github.com/JSintos/DESPTRN/tree/machineproblem6.1) focuses on the Builder design pattern
--   [Machine Problem 7] (https://github.com/JSintos/DESPTRN/tree/machineproblem7) focuses on the Iterator design pattern
+-   [Machine Problem 1.2](https://github.com/JSintos/DESPTRN/tree/machineproblem1.2) focuses on the Factory Method design pattern
+-   [Machine Problem 2](https://github.com/JSintos/DESPTRN/tree/machineproblem2) focuses on the Abstract Factory design pattern
+-   [Machine Problem 3](https://github.com/JSintos/DESPTRN/tree/machineproblem3) focuses on the Singleton design pattern
+-   [Machine Problem 4](https://github.com/JSintos/DESPTRN/tree/machineproblem4) focuses on the Prototype design pattern
+-   [Machine Problem 5](https://github.com/JSintos/DESPTRN/tree/machineproblem5) focuses on the Facade design pattern
+-   [Machine Problem 6.1](https://github.com/JSintos/DESPTRN/tree/machineproblem6.1) focuses on the Builder design pattern
+-   [Machine Problem 7](https://github.com/JSintos/DESPTRN/tree/machineproblem7) focuses on the Iterator design pattern
 
 ## Collaborators
 
