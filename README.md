@@ -24,6 +24,11 @@ Our idea for our e-commerce platform involves a business that primarily sells sa
 -   [Machine Problem 6.1](https://github.com/JSintos/DESPTRN/tree/machineproblem6.1) focuses on the Builder design pattern
 -   [Machine Problem 7](https://github.com/JSintos/DESPTRN/tree/machineproblem7) focuses on the Iterator design pattern
 
+## Future milestones
+
+-   Better web design all throughout the whole website
+-   Integrate other software design patterns in some way
+
 ## Collaborators
 
 [Joshua Lagarejos](https://github.com/joshualagarejos)  
